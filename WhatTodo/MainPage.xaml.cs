@@ -31,14 +31,21 @@ namespace WhatTodo
 
         void TestWPCal()
         {
-            Event testEvent = cal.Events.ForEach(TestEventContent);
+			int i = 0;
+			cal.Events.ForEach(delegate(Event testEvent) 
+			{
+				if (i++ < 10)
+				{
+					TestEventContent(testEvent);
+				}
+			});
         }
 
-        private Event TestEventContent(Event testEvent)
+        private void TestEventContent(Event testEvent)
         {
-            Debug.WriteLine(testEvent.StartTime.ToString());
-
-            return testEvent;
+			Debug.WriteLine(testEvent.Name);
+			Debug.WriteLine(testEvent.StartTime);
+			Debug.WriteLine(testEvent.EndTime);
         }
     }
 }
