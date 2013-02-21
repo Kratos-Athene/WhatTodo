@@ -5,25 +5,20 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace WhatTodo
-{
-	public class WPCal
-	{
+namespace WhatTodo {
+	public class WPCal {
 		private Action Callback;
 		public List<Event> Events { get; set; }
 
-		public WPCal(Action pCallback)
-		{
+		public WPCal(Action pCallback) {
 			Callback = pCallback;
 		}
 
-		public void LoadUserEvents()
-		{
+		public void LoadUserEvents() {
 			LoadAppointments();
 		}
 
-		private void LoadAppointments()
-		{
+		private void LoadAppointments() {
 			Appointments appoints = new Appointments();
 
 			appoints.SearchCompleted += appoints_SearchCompleted;
@@ -34,15 +29,14 @@ namespace WhatTodo
 			appoints.SearchAsync(now, end, "Get all appointments for WhatTodo");
 		}
 
-		private void appoints_SearchCompleted(object sender, AppointmentsSearchEventArgs e)
-		{
+		private void appoints_SearchCompleted(object sender, AppointmentsSearchEventArgs e) {
 			IEnumerable<Event> appointEnumerable = from appoint in e.Results
-												where appoint.Subject != null
-												select new Event {
-													StartTime = appoint.StartTime,
-													EndTime = appoint.EndTime,
-													Name = appoint.Subject
-												};
+												   where appoint.Subject != null
+												   select new Event {
+													   StartTime = appoint.StartTime,
+													   EndTime = appoint.EndTime,
+													   Name = appoint.Subject
+												   };
 
 			Events = appointEnumerable.ToList<Event>();
 

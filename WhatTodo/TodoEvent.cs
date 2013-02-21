@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WhatTodo
-{
-	public enum Priority 
-	{
+namespace WhatTodo {
+	public enum Priority {
 		ASAP,
 		DL,
 		LAZY,
 		CAL
 	}
-	class TodoEvent
-	{
+	class TodoEvent {
 		public string Name { get; set; }
 		public Priority Priority { get; set; }
 		public TimeSpan Required { get; set; }
