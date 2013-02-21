@@ -9,6 +9,10 @@ namespace WhatTodo
     {
         private List<TodoEvent> pTodos = new List<TodoEvent>();
 
-        public Get
+        public Boolean AddTodo(String Name, TimeSpan Required, Priority Priority, DateTime Deadline, string Info, Boolean Split)
+        {
+
+            return true;
+        }
     }
 }
