@@ -12,7 +12,8 @@ namespace WhatTodo {
 			foreach (Event e in ListOfEvents) {
 				Time NewTime = new Time();
 				NewTime.Priority = e.Priority;
-
+				NewTime.Span = e.EndTime - e.StartTime;
+				Times.Add(NewTime);
 			}
 		}
 
@@ -27,6 +28,7 @@ namespace WhatTodo {
 					return Halfen(Times.IndexOf(t), MinuteWork);
 				}
 			}
+			return Times.Count--;
 		}
 
 		private int Halfen(int Index, int HalfingPoint) {
@@ -34,7 +36,16 @@ namespace WhatTodo {
 			Time FirstHalf = new Time();
 			Time SecondHalf = new Time();
 
-			FirstHalf.Span = Halfable.Span + HalfingPoint;
+			FirstHalf.Span = Halfable.Span.Subtract(new Time(0, Math.Abs(HalfingPoint), 0));
+			FirstHalf.Priority = Priority.FREE;
+
+			SecondHalf.Span = Halfable.Span.Subtract(FirstHalf.Span);
+			SecondHalf.Priority = Priority.FREE;
+
+			Times.Insert(Index, FirstHalf);
+			Times.Insert(Index++, SecondHalf);
+
+			return Index++;
 		}
 
 		class Time {
