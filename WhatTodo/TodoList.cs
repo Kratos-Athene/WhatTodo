@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO.IsolatedStorage;
+using System.IO;
 
 namespace WhatTodo {
 	class TodoList {
-		private List<TodoEvent> Todos { get; set; }
+		static string TODO_FILE = "Todos.xml";
+		private List<TodoEvent> Todos { get; set;  }
 
 		public TodoList() {
-			Todos = new List<TodoEvent>();
+			Todos = LoadTodos();
 		}
 
 		/**
 		 * Method for adding a TodoEvent to TodoList into the list. 
 		 */
-		public void AddTodo(String pName, TimeSpan pRequired, Priority pPriority, DateTime pDeadline, string pInfo, Boolean pSplit) {
+		public Boolean AddTodo(String pName, TimeSpan pRequired, Priority pPriority, DateTime pDeadline, string pInfo, Boolean pSplit) {
 			TodoEvent NewTodo = new TodoEvent();
 			NewTodo.Name = pName;
 			NewTodo.Required = pRequired;
@@ -24,10 +29,42 @@ namespace WhatTodo {
 			NewTodo.Split = pSplit;
 
 			Todos.Add(NewTodo);
+			return SaveTodos();
 		}
 
-		/**
-		 * 
-		 */
-	}
+		private Boolean SaveTodos() {
+			try {
+				XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+				xmlWriterSettings.Indent = true;
+
+				using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication()) {
+					using (IsolatedStorageFileStream stream = myIsolatedStorage.OpenFile(TODO_FILE, FileMode.Create, FileAccess.Write)) {
+						XmlSerializer serializer = new XmlSerializer(typeof(List<TodoEvent>));
+						using (XmlWriter xmlWriter = XmlWriter.Create(stream, xmlWriterSettings)) {
+							serializer.Serialize(xmlWriter, Todos);
+						}
+					}
+				}
+				return true;
+			}
+			catch {
+				return false;
+			}
+		}
+
+		private List<TodoEvent> LoadTodos() {
+			List<TodoEvent> pTodos = new List<TodoEvent>();
+
+			try {
+				using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication()) {
+					using (IsolatedStorageFileStream stream = myIsolatedStorage.OpenFile(TODO_FILE, FileMode.Open)) {
+						XmlSerializer serializer = new XmlSerializer(typeof(List<TodoEvent>));
+						pTodos = (List<TodoEvent>)serializer.Deserialize(stream);
+					}
+				}
+			}
+
+			return pTodos;
+		}
+	} // End of class TodoList.
 }
