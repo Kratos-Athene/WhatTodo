@@ -31,8 +31,14 @@ namespace WhatTodo
 
         void TestWPCal()
         {
-            Event testEvent = cal.Events.First();
+            Event testEvent = cal.Events.ForEach(TestEventContent);
+        }
+
+        private Event TestEventContent(Event testEvent)
+        {
             Debug.WriteLine(testEvent.StartTime.ToString());
+
+            return testEvent;
         }
     }
 }
