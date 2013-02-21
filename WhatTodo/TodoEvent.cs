@@ -20,5 +20,15 @@ namespace WhatTodo
         public DateTime pDeadline { get; set; }
         public string pInfo { get; set; }
         public Boolean pSplit { get; set; }
+
+        public TodoEvent(string Name, Priority Priority, TimeSpan Required, DateTime Deadline, string Info, Boolean Split)
+        {
+            pName = Name;
+            pPriority = Priority;
+            pRequired = Required;
+            pDeadline = Deadline;
+            pInfo = Info;
+            pSplit = Split;
+        }
     }
 }
