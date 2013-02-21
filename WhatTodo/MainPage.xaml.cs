@@ -14,23 +14,23 @@ using System.Diagnostics;
 
 namespace WhatTodo
 {
-    public partial class MainPage : PhoneApplicationPage
-    {
-        WPCal cal;
+	public partial class MainPage : PhoneApplicationPage
+	{
+		WPCal cal;
 
-        // Constructor
-        public MainPage()
-        {
-            InitializeComponent();
+		// Constructor
+		public MainPage()
+		{
+			InitializeComponent();
 
-            cal = new WPCal(TestWPCal);
-            cal.LoadUserEvents();
+			cal = new WPCal(TestWPCal);
+			cal.LoadUserEvents();
 
-            Debug.WriteLine("starting");
-        }
+			Debug.WriteLine("starting");
+		}
 
-        void TestWPCal()
-        {
+		void TestWPCal()
+		{
 			int i = 0;
 			cal.Events.ForEach(delegate(Event testEvent) 
 			{
@@ -39,13 +39,13 @@ namespace WhatTodo
 					TestEventContent(testEvent);
 				}
 			});
-        }
+		}
 
-        private void TestEventContent(Event testEvent)
-        {
+		private void TestEventContent(Event testEvent)
+		{
 			Debug.WriteLine(testEvent.Name);
 			Debug.WriteLine(testEvent.StartTime);
 			Debug.WriteLine(testEvent.EndTime);
-        }
-    }
+		}
+	}
 }

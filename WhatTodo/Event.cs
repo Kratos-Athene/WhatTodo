@@ -5,11 +5,11 @@ using System.Text;
 
 namespace WhatTodo
 {
-    public class Event
-    {
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public string Name { get; set; }
-        public string Info { get; set; }
-    }
+	public class Event
+	{
+		public DateTime StartTime { get; set; }
+		public DateTime EndTime { get; set; }
+		public string Name { get; set; }
+		public string Info { get; set; }
+	}
 }

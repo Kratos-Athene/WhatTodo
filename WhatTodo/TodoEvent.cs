@@ -20,5 +20,5 @@ namespace WhatTodo
 		public DateTime Deadline { get; set; }
 		public string Info { get; set; }
 		public Boolean Split { get; set; }
-    }
+	}
 }
