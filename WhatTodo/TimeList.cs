@@ -31,7 +31,10 @@ namespace WhatTodo {
 
 		private int Halfen(int Index, int HalfingPoint) {
 			Time Halfable = Times(Index);
+			Time FirstHalf = new Time();
+			Time SecondHalf = new Time();
 
+			FirstHalf.Span = Halfable.Span + HalfingPoint;
 		}
 
 		class Time {
