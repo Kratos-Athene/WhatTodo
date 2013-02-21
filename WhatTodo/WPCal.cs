@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;W
+using System.Text;
 
 namespace WhatTodo {
 	public class WPCal {

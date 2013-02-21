@@ -9,5 +9,6 @@ namespace WhatTodo {
 		public DateTime EndTime { get; set; }
 		public string Name { get; set; }
 		public string Info { get; set; }
+		public Priority Priority { get; set; }
 	}
 }

@@ -20,6 +20,13 @@ namespace WhatTodo {
 		public MainPage() {
 			InitializeComponent();
 
+			UI ui = new UI(this);
+			TodoList todoList = new TodoList();
+
+			Manager manager = new Manager(ui,todoList);
+
+			ui.TodoList = todoList;
+
 			// jubis testing WPCal
 			cal = new WPCal(TestWPCal);
 			cal.LoadUserEvents();
