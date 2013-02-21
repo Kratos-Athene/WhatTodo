@@ -16,6 +16,24 @@ namespace WhatTodo {
 			}
 		}
 
+		public int GetTimeInstant(int Minutes) {
+			int MinuteWork = Minutes;
+			foreach (Time t in Times) {
+				MinuteWork = MinuteWork - t.Span.Minutes;
+				if (MinuteWork == 0) {
+					return Times.IndexOf(t);
+				}
+				else if (MinuteWork < 0) {
+					return Halfen(Times.IndexOf(t), MinuteWork);
+				}
+			}
+		}
+
+		private int Halfen(int Index, int HalfingPoint) {
+			Time Halfable = Times(Index);
+
+		}
+
 		class Time {
 			public TimeSpan Span { get; set; }
 			public Priority Priority { get; set; }
