@@ -5,7 +5,8 @@ using System.Text;
 
 namespace WhatTodo {
 	public class UI {
-		MainPage MainPage;
+		private MainPage MainPage;
+		public TodoList TodoList;
 		
 		public UI(MainPage mainpage) {
 			MainPage = mainpage;
@@ -14,5 +15,7 @@ namespace WhatTodo {
 		public void UpdateUI() {
 			
 		}
+
+
 	}
 }

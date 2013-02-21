@@ -28,8 +28,5 @@ namespace WhatTodo {
 		private void AlgoRecalcReady() {
 			UI.UpdateUI();
 		}
-
-
-
 	}
 }
