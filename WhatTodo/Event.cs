@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WhatTodo
 {
-    class Event
+    public class Event
     {
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }

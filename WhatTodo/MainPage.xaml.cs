@@ -10,15 +10,29 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.Diagnostics;
 
 namespace WhatTodo
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        WPCal cal;
+
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+
+            cal = new WPCal(TestWPCal);
+            cal.LoadUserEvents();
+
+            Debug.WriteLine("starting");
+        }
+
+        void TestWPCal()
+        {
+            Event testEvent = cal.Events.First();
+            Debug.WriteLine(testEvent.StartTime.ToString());
         }
     }
 }

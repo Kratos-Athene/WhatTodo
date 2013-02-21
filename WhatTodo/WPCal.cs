@@ -1,18 +1,19 @@
 ﻿using Microsoft.Phone.UserData;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace WhatTodo
 {
-    class WPCalc
+    public class WPCal
     {
         private Action Callback;
         private bool Error;
         public List<Event> Events { get; set; }
 
-        WPCalc(Action pCallback)
+        public WPCal(Action pCallback)
         {
             Callback = pCallback;
         }
@@ -45,7 +46,9 @@ namespace WhatTodo
 
             Events = appointEnumerable.ToList<Event>();
 
+            Debug.WriteLine("events loaded, " + Events.Count);
             Callback.Invoke();
         }
+
     }
 }
