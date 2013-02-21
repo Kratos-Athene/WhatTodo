@@ -5,5 +5,5 @@ TODO: Pitch
 
 Coding conventions
 ------------------
-* UNIX style line-endings
+* Windows style line-endings (CR LF, \r\n)
 * Use tabs for indentation, not spaces
