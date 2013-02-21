@@ -34,7 +34,7 @@ namespace WhatTodo
 			int i = 0;
 			cal.Events.ForEach(delegate(Event testEvent) 
 			{
-				if (i++ < 10)
+				if (i++ < 5)
 				{
 					TestEventContent(testEvent);
 				}
@@ -43,7 +43,7 @@ namespace WhatTodo
 
 		private void TestEventContent(Event testEvent)
 		{
-			Debug.WriteLine(testEvent.Name);
+			Debug.WriteLine("'" + testEvent.Name + "'");
 			Debug.WriteLine(testEvent.StartTime);
 			Debug.WriteLine(testEvent.EndTime);
 		}
