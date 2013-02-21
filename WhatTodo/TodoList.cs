@@ -5,14 +5,26 @@ using System.Text;
 
 namespace WhatTodo
 {
-    class TodoList
-    {
-        private List<TodoEvent> pTodos = new List<TodoEvent>();
+	class TodoList
+	{
+		private List<TodoEvent> Todos { get; set;  }
 
-        public Boolean AddTodo(String Name, TimeSpan Required, Priority Priority, DateTime Deadline, string Info, Boolean Split)
-        {
+		public TodoList()
+		{
+			Todos = new List<TodoEvent>();
+		}
 
-            return true;
-        }
-    }
+		public void AddTodo(String pName, TimeSpan pRequired, Priority pPriority, DateTime pDeadline, string pInfo, Boolean pSplit)
+		{
+			TodoEvent NewTodo = new TodoEvent();
+			NewTodo.Name = pName;
+			NewTodo.Required = pRequired;
+			NewTodo.Priority = pPriority;
+			NewTodo.Deadline = pDeadline;
+			NewTodo.Info = pInfo;
+			NewTodo.Split = pSplit;
+
+			Todos.Add(NewTodo);
+		}
+	}
 }
