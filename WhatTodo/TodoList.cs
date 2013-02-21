@@ -7,6 +7,8 @@ namespace WhatTodo
 {
     class TodoList
     {
-        
+        private List<TodoEvent> pTodos = new List<TodoEvent>();
+
+        public Get
     }
 }

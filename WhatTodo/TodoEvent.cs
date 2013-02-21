@@ -7,14 +7,18 @@ namespace WhatTodo
 {
     public enum Priority 
     {
-        Now,
+        ASAP,
         DL,
-        Def,
-        Cal
+        LAZY,
+        CAL
     }
     class TodoEvent
     {
-        public string Name { get; set; }
-        
+        public string pName { get; set; }
+        public Priority pPriority { get; set; }
+        public TimeSpan pRequired { get; set; }
+        public DateTime pDeadline { get; set; }
+        public string pInfo { get; set; }
+        public Boolean pSplit { get; set; }
     }
 }
