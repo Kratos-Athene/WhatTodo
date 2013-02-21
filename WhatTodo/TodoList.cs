@@ -14,6 +14,9 @@ namespace WhatTodo
 			Todos = new List<TodoEvent>();
 		}
 
+		/**
+		 * Method for adding a TodoEvent to TodoList into the list. 
+		 */
 		public void AddTodo(String pName, TimeSpan pRequired, Priority pPriority, DateTime pDeadline, string pInfo, Boolean pSplit)
 		{
 			TodoEvent NewTodo = new TodoEvent();
@@ -26,5 +29,9 @@ namespace WhatTodo
 
 			Todos.Add(NewTodo);
 		}
+
+		/**
+		 * 
+		 */
 	}
 }
