@@ -12,40 +12,43 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Diagnostics;
 
-namespace WhatTodo
-{
-	public partial class MainPage : PhoneApplicationPage
-	{
+namespace WhatTodo {
+	public partial class MainPage : PhoneApplicationPage {
 		WPCal cal;
 
 		// Constructor
-		public MainPage()
-		{
+		public MainPage() {
 			InitializeComponent();
 
+			// jubis testing WPCal
 			cal = new WPCal(TestWPCal);
 			cal.LoadUserEvents();
 
 			Debug.WriteLine("starting");
 		}
 
-		void TestWPCal()
-		{
+		
+		/**
+		 * Jubis testing WPCal
+		 */
+
+		void TestWPCal() {
 			int i = 0;
-			cal.Events.ForEach(delegate(Event testEvent) 
-			{
-				if (i++ < 5)
-				{
+			cal.Events.ForEach(delegate(Event testEvent) {
+				if (i++ < 5) {
 					TestEventContent(testEvent);
 				}
 			});
 		}
 
-		private void TestEventContent(Event testEvent)
-		{
+		private void TestEventContent(Event testEvent) {
 			Debug.WriteLine("'" + testEvent.Name + "'");
 			Debug.WriteLine(testEvent.StartTime);
 			Debug.WriteLine(testEvent.EndTime);
 		}
+
+		/*
+		 * Testing ends
+		 */
 	}
 }

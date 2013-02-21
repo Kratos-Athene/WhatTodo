@@ -31,13 +31,13 @@ namespace WhatTodo
 			DateTime now = DateTime.Now;
 			DateTime end = now.AddYears(1);
 
-			appoints.SearchAsync(now, end, "Get all appointments for WhatTodo");
+			appoints.SearchAsync(now, end, 100000, "Get all appointments for WhatTodo");
 		}
 
 		private void appoints_SearchCompleted(object sender, AppointmentsSearchEventArgs e)
 		{
 			IEnumerable<Event> appointEnumerable = from appoint in e.Results
-												where appoint.Subject != null
+												where appoint.Subject != null && !appoint.IsAllDayEvent
 												select new Event {
 													StartTime = appoint.StartTime,
 													EndTime = appoint.EndTime,
