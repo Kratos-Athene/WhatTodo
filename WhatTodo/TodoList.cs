@@ -10,7 +10,7 @@ using System.IO;
 namespace WhatTodo {
 	class TodoList {
 		static string TODO_FILE = "Todos.xml";
-		private List<TodoEvent> Todos { get; set;  }
+		private List<TodoEvent> Todos { get; set; }
 
 		public TodoList() {
 			Todos = LoadTodos();
@@ -30,6 +30,14 @@ namespace WhatTodo {
 
 			Todos.Add(NewTodo);
 			return SaveTodos();
+		}
+
+		public TimeSpan GetTotalDuration() {
+			TimeSpan Duration = new TimeSpan();
+			foreach (TodoEvent e in Todos) {
+				Duration += e.Required;
+			}
+			return Duration;
 		}
 
 		private Boolean SaveTodos() {
@@ -62,6 +70,9 @@ namespace WhatTodo {
 						pTodos = (List<TodoEvent>)serializer.Deserialize(stream);
 					}
 				}
+			}
+			catch {
+
 			}
 
 			return pTodos;
