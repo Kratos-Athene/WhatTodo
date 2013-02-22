@@ -74,7 +74,7 @@ namespace WhatTodo {
 			} // LOOP WHILE THERE IS DL
 
 
-			// sijoita ensin continous, isoin ensin
+			// sijoita ensin continuous
 			foreach (TodoEvent te in sortedLazy) {
 				if (!te.Split) {
 					Position(te, timelist);
@@ -89,8 +89,6 @@ namespace WhatTodo {
 
 			pCallback.Invoke();
 		}
-
-
 
 		public void PopulateSorting() {
 			indexASAP = 0;

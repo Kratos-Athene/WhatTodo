@@ -13,6 +13,8 @@ namespace WhatTodo {
 				Time NewTime = new Time();
 				NewTime.Priority = e.Priority;
 				NewTime.Span = e.EndTime - e.StartTime;
+				NewTime.Name = e.Name;
+				NewTime.Info = e.Info;
 				Times.Add(NewTime);
 			}
 		}
@@ -40,11 +42,14 @@ namespace WhatTodo {
 			Time FirstHalf = new Time();
 			Time SecondHalf = new Time();
 
-			FirstHalf.Span = Halfable.Span.Subtract(new TimeSpan(0, Math.Abs(HalfingPoint), 0));
-			FirstHalf.Priority = Priority.FREE;
+			FirstHalf = Time.CopyFrom(Math.Abs(HalfingPoint), Halfable);
+			//FirstHalf.Span = Halfable.Span.Subtract(new TimeSpan(0, Math.Abs(HalfingPoint), 0));
+			//FirstHalf.Priority = Priority.FREE;
 
-			SecondHalf.Span = Halfable.Span.Subtract(FirstHalf.Span);
-			SecondHalf.Priority = Priority.FREE;
+			int dur = (int)Halfable.Span.Subtract(FirstHalf.Span).TotalMinutes;
+			SecondHalf = Time.CopyFrom(dur, Halfable);
+			//SecondHalf.Span = Halfable.Span.Subtract(FirstHalf.Span);
+			//SecondHalf.Priority = Priority.FREE;
 
 			Times.RemoveAt(Index);
 
@@ -66,6 +71,8 @@ namespace WhatTodo {
 
 		public int InsertElement(int Index, int Minutes, Priority Priority) {
 			Time UsableTime = Times.ElementAt(Index);
+
+			// 
 			if ((int)UsableTime.Span.TotalMinutes == Minutes) {
 				UsableTime.Priority = Priority;
 				Times.RemoveAt(Index);
@@ -105,6 +112,16 @@ namespace WhatTodo {
 		public class Time {
 			public TimeSpan Span { get; set; }
 			public Priority Priority { get; set; }
+			public String Name { get; set; }
+			public String Info { get; set; }
+			public static Time CopyFrom(int duration, Time from) {
+				Time t = new Time();
+				t.Span = new TimeSpan(duration);
+				t.Priority = from.Priority;
+				t.Name = from.Name;
+				t.Info = from.Info;
+				return t;
+			}
 		}
 	}
 }
