@@ -6,6 +6,12 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True" mc:Ignorable="d" Margin="-4,0,4,0">
+	<phone:PhoneApplicationPage.Resources>
+		<DataTemplate x:Key="FullTemplate"><TextBlock Text="{Binding Array}" /></DataTemplate>
+		<DataTemplate x:Key="ItemTemplate"><TextBlock Text="{Binding Array}" /></DataTemplate>
+		<DataTemplate x:Key="FullsTemplate"><TextBlock Height="50" FontSize="43" Text="{Binding Times}" /></DataTemplate>
+		<DataTemplate x:Key="ItemsTemplate"><TextBlock FontSize="43" Text="{Binding Times}" /></DataTemplate>
+	</phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -40,27 +46,13 @@
         	</TextBlock>
         	<Popup/>
         	<Popup/>
-        	<ListBox x:Name="TodoUrgency" HorizontalAlignment="Left" Height="39" Margin="164,101,0,0" VerticalAlignment="Top" Width="235" FontSize="26.667" Background="{StaticResource PhoneTextBoxBrush}" Foreground="{StaticResource PhoneTextBoxForegroundBrush}">
-        		<System:String>Unurgent</System:String>
-        		<System:String>ASAP</System:String>
-        		<System:String>Deadline</System:String>
-        	</ListBox>
         	<TextBlock HorizontalAlignment="Left" Margin="0,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="123" Width="88" FontSize="29.333">
         		<Run Text="Dead-"/>
         		<LineBreak/>
         		<Run Text="line"/>
         	</TextBlock>
-        	<ListBox x:Name="TodoUrgency_Copy" HorizontalAlignment="Left" Height="39" Margin="164,318,0,0" VerticalAlignment="Top" Width="235" FontSize="26.667" Background="{StaticResource PhoneTextBoxBrush}" Foreground="{StaticResource PhoneTextBoxForegroundBrush}">
-        		<System:String>15 min</System:String>
-        		<System:String>30 min</System:String>
-        		<System:String>1 hour</System:String>
-        		<System:String>2 hours</System:String>
-        		<System:String>3 hours</System:String>
-        		<System:String>4 hours</System:String>
-        		<System:String>6 hours</System:String>
-        		<System:String>8 hours</System:String>
-        		<System:String>12 hours</System:String>
-        	</ListBox>
+        	<toolkit:ListPicker x:Name="TodoListpicker" FullModeItemTemplate="{Binding FullTemplate}" ItemTemplate="{Binding ItemTemplate}" HorizontalAlignment="Left" Margin="164,81,0,0" VerticalAlignment="Top" Width="235" Height="391"/>
+        	<toolkit:ListPicker x:Name="TodoDuration" FullModeHeader="Workload" FullModeItemTemplate="{Binding FullsTemplate}" ItemTemplate="{Binding ItemsTemplate}" HorizontalAlignment="Left" Margin="164,308,0,170" VerticalAlignment="Center" Width="235" Height="71" ExpansionMode="FullScreenOnly"/>
         	
         </Grid>
     </Grid>
