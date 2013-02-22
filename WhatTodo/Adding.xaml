@@ -30,7 +30,7 @@
         		<local:Priority>ASAP</local:Priority>
         		<local:Priority>DL</local:Priority>
         	</ListBox>
-        	<ListBox x:Name="TodoRequired" HorizontalAlignment="Left" Height="67" Margin="164,212,0,0" VerticalAlignment="Top" Width="237" FontSize="48" Background="#FFAAAAAA" Foreground="Black" BorderBrush="Black">
+        	<ListBox x:Name="TodoRequired" HorizontalAlignment="Left" Height="67" Margin="164,293,0,0" VerticalAlignment="Top" Width="237" FontSize="48" Background="#FFAAAAAA" Foreground="Black" BorderBrush="Black">
         		<System:String>15 min</System:String>
         		<System:String>30 min</System:String>
         		<System:String>1 hour</System:String>
@@ -41,7 +41,8 @@
         		<System:String>8 hour</System:String>
         		<System:String>12 hour</System:String>
         	</ListBox>
-        	<TextBlock HorizontalAlignment="Left" Height="67" Margin="10,212,0,0" TextWrapping="Wrap" Text="Required time" VerticalAlignment="Top" Width="149" FontSize="26.667"/>
+			
+        	<TextBlock HorizontalAlignment="Left" Height="67" Margin="10,293,0,0" TextWrapping="Wrap" Text="Required time" VerticalAlignment="Top" Width="149" FontSize="26.667"/>
         </Grid>
     </Grid>
 
