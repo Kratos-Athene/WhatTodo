@@ -18,7 +18,7 @@ namespace WhatTodo {
 		}
 
 		private void TapNext(object sender, System.Windows.Input.GestureEventArgs e) {
-			NextUpEvent.Style = (Style)Application.Current.Resources["PhoneDisabledBrush"];
+			NextUpEvent.Background = (Brush)this.Resources["PhoneDisabledBrush"];
 		}
 	}
 }

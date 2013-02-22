@@ -35,7 +35,7 @@
 			</Grid.RowDefinitions>
 			
 			<!--CurrentEvent - place for the current event information -->
-			<StackPanel x:Name="CurrentEvent" Grid.Row="0" Tap="CurrentEvent_Tap">
+			<StackPanel x:Name="CurrentEvent" Grid.Row="0">
 				<TextBlock x:Name="CurrentEventName" Text="Have a break!" Style="{StaticResource PhoneTextTitle2Style}" />
 				<TextBlock x:Name="CurrentEventDuration" Text="For: 35 mins" Style="{StaticResource PhoneTextNormalStyle}"/>
 			</StackPanel>
