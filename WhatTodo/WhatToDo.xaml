@@ -123,7 +123,7 @@
 			</StackPanel>
 			
 			<StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
-				<Button Content="What did you do?" Margin="60,0" Tap="WhatDidYouDoTap"/>
+				<Button Content="You done?" Margin="60,0" Tap="WhatDidYouDoTap"/>
 			</StackPanel>
 		</Grid>
     </Grid>

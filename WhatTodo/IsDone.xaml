@@ -42,21 +42,21 @@
 				<CheckBox Name="e1" />
 				<StackPanel Orientation="Vertical">
 					<TextBlock Text="Do the dishes" FontSize="30"/>
-					<TextBlock Text="14.45, yesterday"/>
+					<TextBlock Text="14:45, yesterday"/>
 				</StackPanel>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<CheckBox Name="e2" />
 				<StackPanel Orientation="Vertical">
 					<TextBlock Text="Marketing article review" FontSize="30"/>
-					<TextBlock Text="19.30, yesterday"/>
+					<TextBlock Text="19:30, yesterday"/>
 				</StackPanel>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<CheckBox Name="e3" />
 				<StackPanel Orientation="Vertical">
 					<TextBlock Text="Do the dishes" FontSize="30"/>
-					<TextBlock Text="8.15, today"/>
+					<TextBlock Text="8:15, today"/>
 				</StackPanel>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
