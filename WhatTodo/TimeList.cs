@@ -17,7 +17,11 @@ namespace WhatTodo {
 			}
 		}
 
-		public int GetTimeIndex(int Minutes) {
+		public TimeList(List<Time> ListOfTimes) {
+			Times = ListOfTimes;
+		}
+
+		public int GetTimeInstant(int Minutes) {
 			int MinuteWork = Minutes;
 			foreach (Time t in Times) {
 				MinuteWork = MinuteWork - (int) t.Span.TotalMinutes;
@@ -88,6 +92,14 @@ namespace WhatTodo {
 				Times.Insert(Index, UsableTime);
 				return Minutes - (int) UsableTime.Span.TotalMinutes;
 			}
+		}
+
+		public Time GetElement(int index) {
+			return Times.ElementAt(index);
+		}
+
+		public int GetSize() {
+			return Times.Count;
 		}
 
 		public class Time {
