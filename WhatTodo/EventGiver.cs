@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
+using System.Diagnostics;
 
 namespace WhatTodo {
 	public static class EventGiver {
@@ -60,8 +63,15 @@ namespace WhatTodo {
 
 		public static void TakeABreak() {
 			foreach (Event e in ListOfEvents) {
-				e.StartTime.AddMinutes(30);
-				e.EndTime.AddMinutes(30);
+				TimeSpan diffFromNow = DateTime.Now - e.StartTime;
+				if (diffFromNow.TotalMinutes > 0) {
+					e.StartTime = e.StartTime.AddMinutes(diffFromNow.TotalMinutes + 30);
+					e.EndTime = e.EndTime.AddMinutes(diffFromNow.TotalMinutes + 30);
+				}
+				else {
+					e.StartTime = e.StartTime.AddMinutes(30);
+					e.EndTime = e.EndTime.AddMinutes(30);
+				}
 			}
 		}
 
@@ -73,6 +83,16 @@ namespace WhatTodo {
 			Next.EndTime = DateTime.Now + Duration;
 			} catch {
 			
+			}
+		}
+
+		public static void NavigateToCorrectView(PhoneApplicationPage app) {
+			if ((EventGiver.GetEvents().ElementAt(0).StartTime - DateTime.Now).TotalMinutes <= 0) {
+				// Event is running right now => WhatToDo2.xaml
+				app.NavigationService.Navigate(new Uri("/WhatToDo2.xaml", UriKind.Relative));
+			}
+			else {
+				app.NavigationService.Navigate(new Uri("/WhatToDo.xaml", UriKind.Relative));
 			}
 		}
 	}

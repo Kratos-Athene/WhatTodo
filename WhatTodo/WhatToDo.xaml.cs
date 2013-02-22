@@ -97,7 +97,8 @@ namespace WhatTodo {
 		}
 
 		private void DoNextClicked(object sender, System.EventArgs e) {
-			NavigationService.Navigate(new Uri("/WhatToDo2.xaml", UriKind.Relative));
+			EventGiver.DoNext();
+			EventGiver.NavigateToCorrectView(this);
 		}
 	}
 }

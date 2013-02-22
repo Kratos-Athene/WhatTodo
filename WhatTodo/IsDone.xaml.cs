@@ -28,7 +28,7 @@ namespace WhatTodo {
 		}
 
 		private void AcceptDone(object sender, RoutedEventArgs e) {
-			NavigationService.Navigate(new Uri("/WhatToDo.xaml", UriKind.Relative));
+			EventGiver.NavigateToCorrectView(this);
 		}
 
 		private void AllCheckBoxClicked(object sender, RoutedEventArgs e) {

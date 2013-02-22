@@ -25,7 +25,7 @@ namespace WhatTodo
 
         private void Exit(object sender, System.EventArgs e)
         {
-        	NavigationService.Navigate(new Uri("/WhatTodo.xaml", UriKind.Relative));
+			EventGiver.NavigateToCorrectView(this);
         }
 
         private void EnableDLFields(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
