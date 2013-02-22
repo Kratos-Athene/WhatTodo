@@ -59,7 +59,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="WHATTODO" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="What to do?" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Margin="9,-7,0,0" Text="what to do?" Style="{StaticResource PhoneTextTitle1Style}"></TextBlock>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -94,7 +94,7 @@
 			<Border x:Name="CurrentEvent" Grid.ColumnSpan="2" Grid.Row="0" BorderThickness="{StaticResource PhoneBorderThickness}">
         		<StackPanel>
         			<TextBlock x:Name="CurrentEventName" Text="Have a break!" Style="{StaticResource PhoneTextAccentStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
-        			<TextBlock x:Name="CurrentEventDuration" Text="For: 35 mins" Style="{StaticResource PhoneTextNormalStyle}"/>
+        			<TextBlock x:Name="CurrentEventDuration" Style="{StaticResource PhoneTextNormalStyle}"><Run Text="f"/><Run Text="or 35 min"/><Run Text="ute"/><Run Text="s"/></TextBlock>
         		</StackPanel>
         	</Border>
 			<!--NextUp - whats happening next -->
@@ -106,7 +106,7 @@
 					<StackPanel.Background>
 						<SolidColorBrush Color="{StaticResource PhoneBackgroundColor}"/>
 					</StackPanel.Background>
-					<TextBlock x:Name="NextUpTitle" Text="Next up" Style="{StaticResource PhoneTextExtraLargeStyle}" Cursor="Hand" TextDecorations="Underline"/>
+					<TextBlock x:Name="NextUpTitle" Style="{StaticResource PhoneTextExtraLargeStyle}" Cursor="Hand"><Run Text="n"/><Run Text="ext up"/></TextBlock>
 					<TextBlock x:Name="NextUpEventName" Text="Do the dishes" Style="{StaticResource PhoneTextSubtleStyle}" Margin="12,0,12,12" />
 				</StackPanel>
 			

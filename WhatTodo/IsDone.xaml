@@ -23,11 +23,21 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,8.134">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Is it done?" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="WHATTODO" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"><Run Text="i"/><Run Text="s it done?"/></TextBlock>
         </StackPanel>
 		
 		<ListBox Name="IsDoneList" HorizontalAlignment="Left" Height="481" Margin="10,53,0,0" Grid.Row="2" VerticalAlignment="Top" Width="460">
+			<StackPanel Orientation="Horizontal">
+				<CheckBox x:Name="AllCheckBox" VerticalAlignment="Top" Height="76" Width="68" Grid.RowSpan="3" Click="AllCheckBoxClicked"/>
+				<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+					<TextBlock Text="select all" FontSize="30">
+						<TextBlock.Foreground>
+							<SolidColorBrush Color="{StaticResource PhoneSubtleColor}"/>
+						</TextBlock.Foreground>
+					</TextBlock>
+				</StackPanel>
+			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<CheckBox Name="e1" />
 				<StackPanel Orientation="Vertical">
@@ -58,7 +68,7 @@
 			</StackPanel>
 		</ListBox>
 		<Button Content="Accept" HorizontalAlignment="Left" Margin="174,539,0,0" Grid.Row="2" VerticalAlignment="Top" Width="138" Click="AcceptDone" Height="68" FontSize="22"/>
-		<CheckBox x:Name="AllCheckBox" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="76" Margin="10,141,0,0" Width="68" Grid.RowSpan="3" Click="AllCheckBoxClicked"/>
+		
 		<!--<StackPanel Orientation="Horizontal" Grid.Row="2" Width="300">
 			<CheckBox Name="CheckBox" />
 			<StackPanel Orientation="Vertical" Height="50">
