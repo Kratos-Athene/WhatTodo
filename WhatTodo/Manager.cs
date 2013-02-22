@@ -25,11 +25,12 @@ namespace WhatTodo {
 
 		public void ReCalc() {
 			Cal = new WPCal(UserEventsLoaded);
+			Cal.LoadUserEvents();
 		}
 
 		private void UserEventsLoaded() {
 			UserEvents = Cal.Events;
-			Algo = new Algo(UserEvents,TodoList,AlgoRecalcReady);
+			//Algo = new Algo(UserEvents,TodoList, DateTime.Now, AlgoRecalcReady);
 		}
 
 		private void AlgoRecalcReady() {

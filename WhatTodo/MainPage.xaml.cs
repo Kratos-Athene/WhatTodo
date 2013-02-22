@@ -23,9 +23,11 @@ namespace WhatTodo {
 			UI ui = new UI(this);
 			TodoList todoList = new TodoList();
 
-			//Manager manager = new Manager(ui,todoList);
+			Manager manager = new Manager(ui,todoList);
 
 			ui.TodoList = todoList;
+
+			manager.ReCalc();
 
 			// jubis testing WPCal
 			cal = new WPCal(TestWPCal);
