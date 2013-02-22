@@ -4,66 +4,210 @@ using System.Linq;
 using System.Text;
 
 namespace WhatTodo {
-	class Algo {
+	public class Algo {
+		public int indexASAP, indexDL, indexLazy = 0;
 
-	public Algo(List<Event> eventlist, TodoList todolist, Action callback) {
+		public List<TodoEvent> sortedASAP;
+		public List<TodoEvent> sortedDL;
+		public List<TodoEvent> sortedLazy;
+		//public List<TodoEvent> sortedLazySplit;
 
-		/*//aikaa_kaikelle = kuinka paljon aikaa tarvitaan kaikkien listassa olevien toteutukseen
-		List<TodoEvent> list_todoevent  = todolist.GetTodos();
+		public TodoList todolist;
+		public TimeList timelist;
 
-		int time_needed = list_todoevent.GetTotalDuration();
-		int time_needed_pad = time_needed * 3 / 2;
-		int endtime = time_needed_pad;*/
-		//if (endtime < list_todoevent.
+		public Algo(List<Event> pEventList, TodoList pTodoList, DateTime pNow, Action pCallback) {
 
-//aikaa_padded = aikaa_kaikelle * 3/2
-//loppuaika = aikaa_padded
-//if loppuaika < kesto kauimmaiseen
-//	loppuaika = kesto_kauimmaiseen
+			//aikaa_kaikelle = kuinka paljon aikaa tarvitaan kaikkien listassa olevien toteutukseen
+			todolist = pTodoList;
 
-//tee timespanlist
+			PopulateSorting();
 
-// aloita operaatio
+			//tee timelist
+			timelist = new TimeList(pEventList);
 
-//Onko NOW?
-//PANIC
+			// OPERATE
+			// NOW => PANIC
+			TodoEvent now = GetNextASAP();
+			while (now != null) {
+				Panic(now);
+				now = GetNextASAP();
+			}
 
-//for DL in DLs
-//	timeRqd = DL.Duration() * 3/2
-//	counter = timeRqd * 2
-//	etsi DL sijainti
-//	jos deadline ei ole timespansaumassa, jaa elementti
-//		ota taaksepäin seuraava elementti joka on vapaata aikaa:
-//			elemlen = elementin pituus
-//			counter -= elemlen
-			
-//			if counter<0, saavutettiin optimipiste, sauma kohtaan (-elemlen)
-//				jos ei saumassa, tee sauma
-//				alkupiste = viittaus ensimmäiseen timespanniin
+			//for DL in DLs
+			TodoEvent dl = GetNextDL();
+			while (dl != null) {
+				//	timeRqd = DL.Duration() * 3/2
+				int time_required = (int)dl.Required.TotalMinutes;
+						//	counter = timeRqd * 2
+				int counter = time_required * 2;
+
 				
-//		jos ollaan elementissä 0
-//			alkupiste = elementti 0
-	
-//jos kesto alkupisteestä deadlineen on alle timeRqd, PANIC
-//	sijoita DL määrätylle jaksolle
+
+				// deadlinen index, puolitettu tarvittaessa
+				int end_index = timelist.GetTimeIndex(dl.GetTimeToDeadline());
+
+				// start_index iteroidaan alaspäin
+				int start_index = end_index-1;
+				// kuinka paljon tultiin alaspäin
+				int duration = 0;
+
+				while (start_index>0) {
+					TimeList.Time element = timelist.GetElement(start_index);
+					// lisätään jokatapauksessa duration
+					duration += (int)element.Span.TotalMinutes;
+					// jos saadaan lisää tyhjää aikaa
+					if (element.Priority == Priority.FREE) {
+						counter -= (int)element.Span.TotalMinutes;
+					}
+					// jos tultiin tarpeeksi pitkälle
+					if (counter<0) {
+						duration += counter;
+						int start_instance = dl.GetTimeToDeadline() - duration;
+						start_index = GetTimeIndex(start_instance);
+					}
+				}
+				if (timelist.GetTimeBetween(start_index, end_index) < time_required) {
+					Panic(dl);
+				}
+				TimeList list_dl = CropAndSort(start_index, end_index, timelist);
+				Position(dl, list_dl);
+
+				dl = GetNextDL();
+			} // LOOP WHILE THERE IS DL
 
 
-//sijoita ensin continous, isoin ensin
-//for LAZY in LAZYS
-//	sijoita LAZY
+			// sijoita ensin continous, isoin ensin
+			foreach (TodoEvent te in sortedLazy) {
+				if (!te.Split) {
+					Position(te, timelist);
+				}
+			}
+			// sijoita sitten jaettavat
+			foreach (TodoEvent te in sortedLazy) {
+				if (te.Split) {
+					Position(te, timelist);
+				}
+			}
 
-
-//SIJOITUS, jos DL, annetaan myös etu ja takaraja
-//jos cont
-//	aikalistaus 24h tuntia
-//sijoita isoimpaan väliin
-//jos ei mahdu, etsi ensimmäinen paikka johon mahtuu 
-//else
-//	sijoita välille pienimpiin väleihin, eli merkkaa välejä käytetyksi,
-//jos DL, käytä vain tiettyyn asti
+			//for LAZY in LAZYS
+			//	sijoita LAZY
 		}
 
-	//private void position() {}
 
-	}
-}
+
+		public void PopulateSorting() {
+			indexASAP = 0;
+			indexDL = 0;
+			indexLazy = 0;
+
+			foreach (TodoEvent te in todolist.Todos) {
+				if (te.Priority == Priority.ASAP)
+					sortedASAP.Add(te);
+				else if (te.Priority == Priority.DL)
+					sortedDL.Add(te);
+				else if (te.Priority == Priority.LAZY)
+					sortedLazy.Add(te);
+			}
+			// TODO FIRST
+			//sortedDL.Sort(delegate(Person p1, Person p2) { return p1.name.CompareTo(p2.name); });
+			sortedDL.Sort(delegate(TodoEvent te1, TodoEvent te2) {
+					return te1.Deadline.CompareTo(te2.Deadline);
+				});
+		}
+
+		//int CalculateTime(DateTime now, DateTime then) {
+		// LASKE EROTUS PALAUTA MINUUTTEINA
+		//}
+
+
+		public TodoEvent GetNextASAP() {
+			if (indexASAP < sortedASAP.Count) {
+				TodoEvent te = sortedASAP.ElementAt(indexASAP);
+				indexASAP++;
+				return te;
+			}
+			return null;
+		}
+
+		public TodoEvent GetNextDL() {
+			if (indexDL < sortedDL.Count) {
+				TodoEvent te = sortedDL.ElementAt(indexDL);
+				indexDL++;
+				return te;
+			}
+			return null;
+		}
+
+		public TodoEvent GetNextLazy() {
+			if (indexLazy < sortedLazy.Count) {
+				TodoEvent te = sortedLazy.ElementAt(indexLazy);
+				indexLazy++;
+				return te;
+			}
+			return null;
+		}
+
+		// position as ASAP
+		public void Panic(TodoEvent te) {			
+			int dur = (int)te.Required.TotalMinutes;
+
+			int i = 0;
+			// CONTINUOUS
+			if (te.Split) {
+				while (i < timelist.GetSize()) {
+					TimeList.Time t = timelist.GetElement(i);
+					if ((int)t.Span.TotalMinutes >= dur) {
+						timelist.InsertElement(i, dur, Priority.ASAP);
+					}
+				}
+			}
+
+			// SPLITABLE
+			else {
+				int remaining = dur;
+				while ((remaining = timelist.InsertElement(i, remaining, Priority.ASAP)) > 0) {
+					i++;
+					while (i < timelist.GetSize()) {
+						if (timelist.GetElement(i).Priority==Priority.FREE) {
+							break;
+						}
+						else {
+							i++;
+						}
+					} // while etsi uusi
+				} // on vielä lisättävää
+			} // SPLITABLE
+		}
+
+		public TimeList CropAndSort(int start, int end, TimeList list) {
+			List<TimeList.Time> new_list = timelist.Times.GetRange(start, end - start);
+			
+			// SORT
+			new_list.Sort(delegate(TimeList.Time t1, TimeList.Time t2) {
+					return (t1.Span.CompareTo((int)t2.Span.TotalMinutes));
+				});
+			TimeList tl = new TimeList(new_list);
+			return tl;
+		}
+
+		public void Position(TodoEvent te, TimeList list) {
+
+			int dur = (int)te.Required.TotalMinutes;
+			int i = 0;
+
+			int remaining = dur;
+				while ((remaining = timelist.InsertElement(i, remaining, Priority.ASAP)) > 0) {
+					i++;
+					while (i < list.GetSize()) {
+						if (timelist.GetElement(i).Priority==Priority.FREE) {
+							break;
+						}
+						else {
+							i++;
+						}
+					} // while etsi uusi
+				} // on vielä lisättävää
+			} // end of Position
+		}
+	} // end of class
+} // end of namespace

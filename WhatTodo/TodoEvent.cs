@@ -8,14 +8,23 @@ namespace WhatTodo {
 		ASAP,
 		DL,
 		LAZY,
-		CAL
+		CAL,
+		FREE
 	}
-	class TodoEvent {
+	public class TodoEvent {
 		public string Name { get; set; }
 		public Priority Priority { get; set; }
 		public TimeSpan Required { get; set; }
 		public DateTime Deadline { get; set; }
 		public string Info { get; set; }
 		public Boolean Split { get; set; }
+
+		public int GetTimeToDeadline() {
+			DateTime Current = DateTime.Now;
+
+			TimeSpan Difference = Deadline - Current;
+
+			return (int) Difference.TotalMinutes;
+		}
 	}
 }
