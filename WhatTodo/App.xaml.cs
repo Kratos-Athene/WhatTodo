@@ -21,7 +21,7 @@ namespace WhatTodo {
 		/// <returns>The root frame of the Phone Application.</returns>
 		public PhoneApplicationFrame RootFrame { get; private set; }
 
-		private Boolean NavigationStopped = false;
+		private bool NavigationStopped = false;
 
 		/// <summary>
 		/// Constructor for the Application object.
@@ -75,7 +75,7 @@ namespace WhatTodo {
 				return;
 
 			// If the first event is currently ticking, start page will be WhatToDo2.xaml instead of WhatToDo.xaml
-			if ((EventGiver.GetEvents().ElementAt(0).StartTime - DateTime.Now).TotalMinutes > 0) {
+			if (EventGiver.FirstEvent() == null || (EventGiver.FirstEvent().StartTime - DateTime.Now).TotalMinutes > 0) {
 				// Nope, it wasn't.
 				return;
 			}

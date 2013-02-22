@@ -13,8 +13,8 @@ namespace WhatTodo {
 
 		public static void Init() {
 			Event CurrentEvent = new Event();
-			CurrentEvent.StartTime = new DateTime(2013, 2, 22, 13, 0, 0);
-			CurrentEvent.EndTime = new DateTime(2013, 2, 22, 20, 30, 0);
+			CurrentEvent.StartTime = new DateTime(2013, 2, 22, 18, 0, 0);
+			CurrentEvent.EndTime = new DateTime(2013, 2, 22, 19, 30, 0);
 			CurrentEvent.Name = "Do the dishes";
 			CurrentEvent.Priority = Priority.ASAP;
 			CurrentEvent.Info = "You've procrastinated for much too long, it's time to give those dishes a proper cleaning!";
@@ -63,6 +63,7 @@ namespace WhatTodo {
 
 		public static void TakeABreak() {
 			foreach (Event e in ListOfEvents) {
+				if (e == null) continue;
 				TimeSpan diffFromNow = DateTime.Now - e.StartTime;
 				if (diffFromNow.TotalMinutes > 0) {
 					e.StartTime = e.StartTime.AddMinutes(diffFromNow.TotalMinutes + 30);
@@ -77,7 +78,7 @@ namespace WhatTodo {
 
 		public static void DoNext() {
 			try {
-			Event Next = ListOfEvents.ElementAt(0);
+			Event Next = FirstEvent();
 			TimeSpan Duration = Next.EndTime - Next.StartTime;
 			Next.StartTime = DateTime.Now;
 			Next.EndTime = DateTime.Now + Duration;
@@ -86,8 +87,16 @@ namespace WhatTodo {
 			}
 		}
 
+		public static Event FirstEvent() {
+			List<Event> events = GetEvents();
+			foreach (Event e in events) {
+				if (e != null) return e;
+			}
+			return null;
+		}
+
 		public static void NavigateToCorrectView(PhoneApplicationPage app) {
-			if ((EventGiver.GetEvents().ElementAt(0).StartTime - DateTime.Now).TotalMinutes <= 0) {
+			if (FirstEvent() != null && ((FirstEvent().StartTime - DateTime.Now).TotalMinutes <= 0)) {
 				// Event is running right now => WhatToDo2.xaml
 				app.NavigationService.Navigate(new Uri("/WhatToDo2.xaml", UriKind.Relative));
 			}

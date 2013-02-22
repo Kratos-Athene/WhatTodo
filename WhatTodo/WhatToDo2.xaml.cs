@@ -22,9 +22,12 @@ namespace WhatTodo
         }
 
 		private void InitializeCurrentTaskDisplay() {
-			List<Event> events = EventGiver.GetEvents();
+			Event firstEvent = EventGiver.FirstEvent();
+			if (firstEvent == null) {
+				return;
+			}
 
-			Event firstEvent = events.ElementAt(0);
+			CurrentEventName.Text = firstEvent.Name;
 
 			// Make a nice duration text
 			TimeSpan duration = firstEvent.EndTime - firstEvent.StartTime;

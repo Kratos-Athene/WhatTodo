@@ -21,9 +21,11 @@ namespace WhatTodo {
 		}
 
 		private void InitializeCurrentTaskDisplay() {
-			List<Event> events = EventGiver.GetEvents();
+			Event firstEvent = EventGiver.FirstEvent();
+			if (firstEvent == null) {
+				return;
+			}
 
-			Event firstEvent = events.ElementAt(0);
 			TimeSpan breakDuration = firstEvent.StartTime - DateTime.Now;
 			if (breakDuration.TotalMinutes <= 0) {
 				// Dat is now. Wrong page.
@@ -51,9 +53,12 @@ namespace WhatTodo {
 		}
 
 		private void initializeNextTaskDisplay() {
-			List<Event> events = EventGiver.GetEvents();
+			Event firstEvent = EventGiver.FirstEvent();
+			if (firstEvent == null) {
+				return;
+			}
 
-			Event firstEvent = events.ElementAt(0);
+			NextUpEventName.Text = firstEvent.Name;
 			
 			// Make a nice duration text
 			TimeSpan duration = firstEvent.EndTime - firstEvent.StartTime;
