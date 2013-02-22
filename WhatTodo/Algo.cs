@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 
 namespace WhatTodo {
-	class Algo {
-		public:
-		int indexASAP, indexDL, indexLazy = 0;
+	public class Algo {
+		public int indexASAP, indexDL, indexLazy = 0;
 
-		List<TodoEvent> sortedASAP;
-		List<TodoEvent> sortedDL;
-		List<TodoEvent> sortedLazy;
+		public List<TodoEvent> sortedASAP;
+		public List<TodoEvent> sortedDL;
+		public List<TodoEvent> sortedLazy;
+		//public List<TodoEvent> sortedLazySplit;
 
-		TodoList todolist;
+		public TodoList todolist;
+		public TimeList timelist;
 
 		public Algo(List<Event> pEventList, TodoList pTodoList, DateTime pNow, Action pCallback) {
 
@@ -22,7 +23,7 @@ namespace WhatTodo {
 			PopulateSorting();
 
 			//tee timelist
-			TimeList timelist = new TimeList(eventlist);
+			timelist = new TimeList(pEventList);
 
 			// OPERATE
 			// NOW => PANIC
@@ -36,7 +37,7 @@ namespace WhatTodo {
 			TodoEvent dl = GetNextDL();
 			while (dl != null) {
 				//	timeRqd = DL.Duration() * 3/2
-				int time_required = dl.Required;
+				int time_required = (int)dl.Required.TotalMinutes;
 						//	counter = timeRqd * 2
 				int counter = time_required * 2;
 
@@ -51,7 +52,7 @@ namespace WhatTodo {
 				int duration = 0;
 
 				while (start_index>0) {
-					Time element = timelist.GetElement();
+					TimeList.Time element = timelist.GetElement();
 					// lisätään jokatapauksessa duration
 					duration += element.Duration();
 					// jos saadaan lisää tyhjää aikaa
@@ -72,27 +73,31 @@ namespace WhatTodo {
 			}
 
 
-			//sijoita ensin continous, isoin ensin
+			// sijoita ensin continous, isoin ensin
+			foreach (TodoEvent te in sortedLazy) {
+				if (!te.Split) {
+					position(te);
+				}
+			}
+			// sijoita sitten jaettavat
+			foreach (TodoEvent te in sortedLazy) {
+				if (te.Split) {
+					position(te);
+				}
+			}
+
 			//for LAZY in LAZYS
 			//	sijoita LAZY
 		}
 
-		//SIJOITUS, jos DL, annetaan myös etu ja takaraja
-		//jos cont
-		//	aikalistaus 24h tuntia
-		//sijoita isoimpaan väliin
-		//jos ei mahdu, etsi ensimmäinen paikka johon mahtuu 
-		//else
-		//	sijoita välille pienimpiin väleihin, eli merkkaa välejä käytetyksi,
-		//jos DL, käytä vain tiettyyn asti
 
-		void PopulateSorting() {
+
+		public void PopulateSorting() {
 			indexASAP = 0;
 			indexDL = 0;
 			indexLazy = 0;
 
-			foreach (TodoEvent te in todolist.Todos)
-			{
+			foreach (TodoEvent te in todolist.Todos) {
 				if (te.GetEnum() == Priority.ASAP)
 					sortedASAP.Add(te);
 				else if (te.GetEnum() == Priority.DL)
@@ -100,9 +105,9 @@ namespace WhatTodo {
 				else if (te.GetEnum() == Priority.LAZY)
 					sortedLazy.Add(te);
 			}
-				// TODO SORTING!!!!
-				// example:
-				//sortedDL.Sort(delegate(Person p1, Person p2) { return p1.name.CompareTo(p2.name); });
+			// TODO SORTING!!!!
+			// example:
+			//sortedDL.Sort(delegate(Person p1, Person p2) { return p1.name.CompareTo(p2.name); });
 		}
 
 		//int CalculateTime(DateTime now, DateTime then) {
@@ -110,13 +115,54 @@ namespace WhatTodo {
 		//}
 
 
-		TodoEvent GetNextASAP() { }
+		public TodoEvent GetNextASAP() {
+			if (indexASAP < sortedASAP.Count) {
+				TodoEvent te = sortedASAP.ElementAt(indexASAP);
+				indexASAP++;
+				return te;
+			}
+			return null;
+		}
 
+		public TodoEvent GetNextDL() {
+			if (indexDL < sortedDL.Count) {
+				TodoEvent te = sortedDL.ElementAt(indexDL);
+				indexDL++;
+				return te;
+			}
+			return null;
+		}
+
+		public TodoEvent GetNextLazy() {
+			if (indexLazy < sortedLazy.Count) {
+				TodoEvent te = sortedLazy.ElementAt(indexLazy);
+				indexLazy++;
+				return te;
+			}
+			return null;
+		}
 
 		// position as ASAP
-		void panic(TodoEvent te) { }
+		public void panic(TodoEvent te) {
+			int i = 0;
+			TimeList.Time te = timelist.GetElement(i);
+		
+		}
 		// position typical
-		void position(TodoEvent te) { }
+		public void position(TodoEvent te) {
+
+
+
+			//SIJOITUS, jos DL, annetaan myös etu ja takaraja
+			//jos cont
+			//	aikalistaus 24h tuntia
+			//sijoita isoimpaan väliin
+			//jos ei mahdu, etsi ensimmäinen paikka johon mahtuu 
+			//else
+			//	sijoita välille pienimpiin väleihin, eli merkkaa välejä käytetyksi,
+			//jos DL, käytä vain tiettyyn asti
+		
+		}
 
 	}
 }
