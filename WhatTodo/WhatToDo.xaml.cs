@@ -27,7 +27,7 @@ namespace WhatTodo {
 			TimeSpan breakDuration = firstEvent.StartTime - DateTime.Now;
 			if (breakDuration.TotalMinutes <= 0) {
 				// Dat is now. Wrong page.
-				NavigationService.Navigate(new Uri("/WhatToDo2.xaml", UriKind.Relative));
+				return;
 			}
 			else {
 				// We has a break!

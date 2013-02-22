@@ -10,7 +10,7 @@ namespace WhatTodo {
 
 		public static void Init() {
 			Event CurrentEvent = new Event();
-			CurrentEvent.StartTime = new DateTime(2013, 2, 22, 20, 0, 0);
+			CurrentEvent.StartTime = new DateTime(2013, 2, 22, 13, 0, 0);
 			CurrentEvent.EndTime = new DateTime(2013, 2, 22, 20, 30, 0);
 			CurrentEvent.Name = "Do the dishes";
 			CurrentEvent.Priority = Priority.ASAP;

@@ -21,6 +21,8 @@ namespace WhatTodo {
 		/// <returns>The root frame of the Phone Application.</returns>
 		public PhoneApplicationFrame RootFrame { get; private set; }
 
+		private Boolean NavigationStopped = false;
+
 		/// <summary>
 		/// Constructor for the Application object.
 		/// </summary>
@@ -53,6 +55,39 @@ namespace WhatTodo {
 				PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
 			}
 
+			// Skipping initial navigation, if needed
+			RootFrame.Navigating += new NavigatingCancelEventHandler(RootFrame_Navigating);
+		}
+
+		/// <summary>
+		/// Event handler to intercept MainPage navigation
+		/// </summary>
+		/// <param name="sender">the frame</param>
+		/// <param name="e">navigation args</param>
+		void RootFrame_Navigating(object sender, NavigatingCancelEventArgs e) {
+			// Only do it once.
+			if (NavigationStopped) {
+				return;
+			}
+
+			// Only care about MainPage
+			if (e.Uri.ToString().Contains("/WhatToDo.xaml") != true)
+				return;
+
+			// If the first event is currently ticking, start page will be WhatToDo2.xaml instead of WhatToDo.xaml
+			if ((EventGiver.GetEvents().ElementAt(0).StartTime - DateTime.Now).TotalMinutes > 0) {
+				// Nope, it wasn't.
+				return;
+			}
+
+			// Cancel current navigation and schedule the real navigation for the next tick
+			// (we can't navigate immediately as that will fail; no overlapping navigations
+			// are allowed)
+			e.Cancel = true;
+			NavigationStopped = true;
+			RootFrame.Dispatcher.BeginInvoke(delegate {
+				RootFrame.Navigate(new Uri("/WhatToDo2.xaml", UriKind.Relative));
+			});
 		}
 
 		// Code to execute when the application is launching (eg, from Start)
