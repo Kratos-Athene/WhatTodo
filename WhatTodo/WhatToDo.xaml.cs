@@ -19,6 +19,8 @@ namespace WhatTodo {
 
 		private void TapNext(object sender, System.Windows.Input.GestureEventArgs e) {
 			NextUpEvent.Background = (Brush)this.Resources["PhoneDisabledBrush"];
+			
+			NextUpPanel.Visibility = System.Windows.Visibility.Visible;
 		}
 	}
 }
