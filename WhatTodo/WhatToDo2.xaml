@@ -64,7 +64,7 @@
 			</StackPanel>
 			
 			<StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
-				<Button Content="You done?" Margin="60,0"/>
+				<Button Content="You done?" Margin="60,0" Tap="WhatDidYouDoTap"/>
 			</StackPanel>
 		</Grid>
 		
@@ -75,7 +75,7 @@
 	
 	<phone:PhoneApplicationPage.ApplicationBar>
 	    <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-	        <shell:ApplicationBarIconButton x:Name="AddButton" Text="add new" IconUri="/icons/appbar.add.rest.png"/>
+	        <shell:ApplicationBarIconButton x:Name="AddButton" Text="add new" IconUri="/icons/appbar.add.rest.png" Click="AddButtonClick"/>
 	        <shell:ApplicationBarIconButton x:Name="BreakButton" Text="snooze" IconUri="/icons/zzz.png" Click="SnoozeClicked"/>
 	    </shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>

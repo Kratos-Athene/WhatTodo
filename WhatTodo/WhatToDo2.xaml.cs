@@ -49,6 +49,14 @@ namespace WhatTodo
 			NextUpDescriptionText.Text = description;
 		}
 
+		private void AddButtonClick(object sender, System.EventArgs e) {
+			NavigationService.Navigate(new Uri("/Adding.xaml", UriKind.Relative));
+		}
+
+		private void WhatDidYouDoTap(object sender, System.Windows.Input.GestureEventArgs e) {
+			NavigationService.Navigate(new Uri("/IsDone.xaml", UriKind.Relative));
+		}
+		
         private void SnoozeClicked(object sender, System.EventArgs e)
         {
         	NavigationService.Navigate(new Uri("/WhatToDo.xaml", UriKind.Relative));
