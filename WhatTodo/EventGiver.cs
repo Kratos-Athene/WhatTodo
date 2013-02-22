@@ -57,5 +57,23 @@ namespace WhatTodo {
 			}
 			return ListOfEvents;
 		}
+
+		public static void TakeABreak() {
+			foreach (Event e in ListOfEvents) {
+				e.StartTime.AddMinutes(30);
+				e.EndTime.AddMinutes(30);
+			}
+		}
+
+		public static void DoNext() {
+			try {
+			Event Next = ListOfEvents.ElementAt(0);
+			TimeSpan Duration = Next.EndTime - Next.StartTime;
+			Next.StartTime = DateTime.Now;
+			Next.EndTime = DateTime.Now + Duration;
+			} catch {
+			
+			}
+		}
 	}
 }
