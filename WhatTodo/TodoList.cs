@@ -8,7 +8,7 @@ using System.IO.IsolatedStorage;
 using System.IO;
 
 namespace WhatTodo {
-	class TodoList {
+	public class TodoList {
 		static string TODO_FILE = "Todos.xml";
 		private List<TodoEvent> Todos { get; set; }
 

@@ -8,12 +8,12 @@ namespace WhatTodo {
 
 	public Algo(List<Event> eventlist, TodoList todolist, Action callback) {
 
-		//aikaa_kaikelle = kuinka paljon aikaa tarvitaan kaikkien listassa olevien toteutukseen
+		/*//aikaa_kaikelle = kuinka paljon aikaa tarvitaan kaikkien listassa olevien toteutukseen
 		List<TodoEvent> list_todoevent  = todolist.GetTodos();
 
 		int time_needed = list_todoevent.GetTotalDuration();
 		int time_needed_pad = time_needed * 3 / 2;
-		int endtime = time_needed_pad;
+		int endtime = time_needed_pad;*/
 		//if (endtime < list_todoevent.
 
 //aikaa_padded = aikaa_kaikelle * 3/2
