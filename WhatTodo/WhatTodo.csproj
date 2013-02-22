@@ -76,6 +76,9 @@
     <Compile Include="TodoEvent.cs" />
     <Compile Include="TodoList.cs" />
     <Compile Include="UI.cs" />
+    <Compile Include="WhatToDo.xaml.cs">
+      <DependentUpon>WhatToDo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPCal.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +93,10 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WhatToDo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
