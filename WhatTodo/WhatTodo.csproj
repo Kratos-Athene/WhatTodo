@@ -25,7 +25,7 @@
     <SilverlightAppEntry>WhatTodo.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <ExpressionBlendVersion>5.0.31017.0</ExpressionBlendVersion>
+    <ExpressionBlendVersion>4.0.30816.0</ExpressionBlendVersion>
     <Utf8Output>true</Utf8Output>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -89,6 +89,9 @@
     <Compile Include="WhatToDo.xaml.cs">
       <DependentUpon>WhatToDo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WhatToDo2.xaml.cs">
+      <DependentUpon>WhatToDo2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPCal.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WhatToDo.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WhatToDo2.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -143,6 +150,7 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+    <Content Include="icons\zzz.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
