@@ -36,5 +36,10 @@ namespace WhatTodo {
 		{
 			NextUpEvent.BorderBrush = (Brush) this.Resources["PhoneAccentColor"];
 		}
+
+		private void DoNextClicked(object sender, System.EventArgs e)
+		{
+			NavigationService.Navigate(new Uri("/WhatToDo2.xaml", UriKind.Relative));
+		}
 	}
 }

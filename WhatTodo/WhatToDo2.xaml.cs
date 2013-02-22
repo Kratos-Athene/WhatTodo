@@ -19,5 +19,10 @@ namespace WhatTodo
         {
             InitializeComponent();
         }
+
+        private void SnoozeClicked(object sender, System.EventArgs e)
+        {
+        	NavigationService.Navigate(new Uri("/WhatToDo.xaml", UriKind.Relative));
+        }
     }
 }

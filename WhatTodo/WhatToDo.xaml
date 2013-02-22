@@ -132,7 +132,7 @@
 	<phone:PhoneApplicationPage.ApplicationBar>
 	    <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
 	        <shell:ApplicationBarIconButton x:Name="AddButton" Text="add new" IconUri="/icons/appbar.add.rest.png" Click="AddButtonClick"/>
-	        <shell:ApplicationBarIconButton x:Name="DoNextButton" IconUri="/icons/appbar.transport.ff.rest.png" Text="do next"/>
+	        <shell:ApplicationBarIconButton x:Name="DoNextButton" IconUri="/icons/appbar.transport.ff.rest.png" Text="do next" Click="DoNextClicked"/>
 	    </shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
