@@ -1,0 +1,48 @@
+﻿<phone:PhoneApplicationPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:WhatTodo" xmlns:System="clr-namespace:System;assembly=mscorlib"
+    x:Class="WhatTodo.Adding"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" mc:Ignorable="d">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+        	<RowDefinition Height="Auto"/>
+        	<RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="WhatTodo" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Add new Todo" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        	<TextBox x:Name="TodoName" HorizontalAlignment="Left" Height="73" Margin="152,34,0,0" TextWrapping="Wrap" Text="Todo's name" VerticalAlignment="Top" Width="259"/>
+        	<TextBlock HorizontalAlignment="Left" Height="62" Margin="9,34,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="138" FontSize="48" TextAlignment="Center"/>
+        	<Popup/>
+        	<TextBlock HorizontalAlignment="Left" Margin="8,121,0,0" TextWrapping="Wrap" Text="Priority" VerticalAlignment="Top" FontSize="48"/>
+        	<ListBox x:Name="TodoPriority" HorizontalAlignment="Left" Height="64" Margin="164,121,0,0" VerticalAlignment="Top" Width="237" SelectedIndex="0" FontSize="48" Background="#FFBDBDBD">
+        		<local:Priority>LAZY</local:Priority>
+        		<local:Priority>ASAP</local:Priority>
+        		<local:Priority>DL</local:Priority>
+        	</ListBox>
+        	<ListBox x:Name="TodoRequired" HorizontalAlignment="Left" Height="67" Margin="164,212,0,0" VerticalAlignment="Top" Width="237" FontSize="48" Background="#FFAAAAAA" Foreground="Black" BorderBrush="Black">
+        		<System:String>15 min</System:String>
+        		<System:String>30 min</System:String>
+        		<System:String>1 hour</System:String>
+        		<System:String>2 hour</System:String>
+        		<System:String>3 hour</System:String>
+        		<System:String>4 hour</System:String>
+        		<System:String>6 hour</System:String>
+        		<System:String>8 hour</System:String>
+        		<System:String>12 hour</System:String>
+        	</ListBox>
+        	<TextBlock HorizontalAlignment="Left" Height="67" Margin="10,212,0,0" TextWrapping="Wrap" Text="Required time" VerticalAlignment="Top" Width="149" FontSize="26.667"/>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
