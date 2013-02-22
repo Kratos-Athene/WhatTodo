@@ -5,7 +5,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" mc:Ignorable="d">
+    shell:SystemTray.IsVisible="True" mc:Ignorable="d" Margin="-4,0,4,0">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -21,16 +21,10 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-        	<TextBox x:Name="TodoName" HorizontalAlignment="Left" Height="73" Margin="152,5,0,0" TextWrapping="Wrap" Text="Todo's name" VerticalAlignment="Top" Width="259"/>
+        <Grid x:Name="ContentPanel" Margin="12,137,12,10" Grid.RowSpan="2">
+        	<TextBox x:Name="TodoName" HorizontalAlignment="Left" Height="73" Margin="152,11,0,0" TextWrapping="Wrap" Text="Todo's name" VerticalAlignment="Top" Width="259"/>
         	<TextBlock HorizontalAlignment="Left" Height="62" Margin="0,5,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="138" FontSize="48"/>
-        	<Popup/>
-        	<TextBlock HorizontalAlignment="Left" Margin="0,92,0,0" TextWrapping="Wrap" Text="Priority" VerticalAlignment="Top" FontSize="48"/>
-        	<ListBox x:Name="TodoPriority" HorizontalAlignment="Left" Height="64" Margin="164,92,0,0" VerticalAlignment="Top" Width="237" SelectedIndex="0" FontSize="48" Background="#FFBDBDBD">
-        		<local:Priority>LAZY</local:Priority>
-        		<local:Priority>ASAP</local:Priority>
-        		<local:Priority>DL</local:Priority>
-        	</ListBox>
+        	<TextBlock HorizontalAlignment="Left" Margin="0,92,0,0" TextWrapping="Wrap" Text="Urgency" VerticalAlignment="Top" FontSize="32"/>
         	<ListBox x:Name="TodoRequired" HorizontalAlignment="Left" Height="67" Margin="164,311,0,0" VerticalAlignment="Top" Width="237" FontSize="48" Background="#FFAAAAAA" Foreground="Black" BorderBrush="Black">
         		<System:String>15 min</System:String>
         		<System:String>30 min</System:String>
@@ -43,32 +37,32 @@
         		<System:String>12 hour</System:String>
         	</ListBox>
 			
-        	<TextBlock HorizontalAlignment="Left" Height="67" Margin="0,312,0,0" TextWrapping="Wrap" Text="Required time" VerticalAlignment="Top" Width="149" FontSize="26.667"/>
+        	<TextBlock HorizontalAlignment="Left" Height="67" Margin="0,312,0,0" TextWrapping="Wrap" Text="Workload" VerticalAlignment="Top" Width="149" FontSize="32"/>
         	<toolkit:DatePicker x:Name="TodoDLDate" HorizontalAlignment="Left" Margin="152,161,0,0" VerticalAlignment="Top" Height="98" Width="259" FontSize="32"/>
         	<toolkit:TimePicker x:Name="TodoDLTime" HorizontalAlignment="Left" Margin="152,228,0,0" VerticalAlignment="Top" Height="97" Width="259"/>
-        	<TextBlock HorizontalAlignment="Left" Margin="0,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" FontSize="21.333" Width="149">
-        		<Run Text="Date for"/>
-        		<LineBreak/>
-        		<Run Text="deadline"/>
-        	</TextBlock>
-        	<TextBlock HorizontalAlignment="Left" Margin="0,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" FontSize="21.333" Height="63">
-        		<Run Text="Time for"/>
-        		<LineBreak/>
-        		<Run Text="deadline"/>
-        	</TextBlock>
-        	<toolkitPrimitives:ToggleSwitchButton x:Name="TodoSplit" Content="ToggleSwitchButton" HorizontalAlignment="Left" Margin="164,391,0,0" VerticalAlignment="Top"/>
-        	<TextBlock HorizontalAlignment="Left" Margin="0,403,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24">
-        		<Run Text="Can Todo"/>
-        		<LineBreak/>
-        		<Run Text="be splitted?"/>
-        	</TextBlock>
+        	<TextBlock HorizontalAlignment="Left" Margin="0,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" FontSize="32" Width="149" Text="Date"/>
+        	<TextBlock HorizontalAlignment="Left" Margin="0,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" FontSize="32" Height="63" Text="Time"/>
+        	<toolkitPrimitives:ToggleSwitchButton x:Name="TodoSplit" Content="ToggleSwitchButton" HorizontalAlignment="Left" Margin="164,387,0,0" VerticalAlignment="Top"/>
+        	<TextBlock HorizontalAlignment="Left" Margin="0,411,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="32" Text="Splittable"/>
         	<TextBox HorizontalAlignment="Left" Height="85" Margin="152,472,0,0" TextWrapping="Wrap" Text="Info goes here" VerticalAlignment="Top" Width="259" FontSize="21.333"/>
         	<TextBlock HorizontalAlignment="Left" Margin="0,486,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333">
         		<Run Text="Additional info "/>
         		<LineBreak/>
         		<Run Text="for Todo"/>
         	</TextBlock>
+        	<Popup Margin="0,0,456,549"/>
+        	<Grid Background="#FFE5E5E5" Margin="164,89,55,393" AllowDrop="True">
+        		<Grid.DataContext>
+        			<local:Priority>ASAP</local:Priority>
+        		</Grid.DataContext>
+        	</Grid>
         </Grid>
     </Grid>
+<phone:PhoneApplicationPage.ApplicationBar>
+    <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+        <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.save.rest.png" Text="Save Todo"/>
+        <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.cancel.rest.png" Text="Cancel"/>
+    </shell:ApplicationBar>
+</phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>
