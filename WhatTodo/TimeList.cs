@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace WhatTodo {
-	class TimeList {
+	public class TimeList {
 		public List<Time> Times { get; set; }
 
 		public TimeList(List<Event> ListOfEvents) {
@@ -48,7 +48,7 @@ namespace WhatTodo {
 			return Index++;
 		}
 
-		class Time {
+		public class Time {
 			public TimeSpan Span { get; set; }
 			public Priority Priority { get; set; }
 		}

@@ -8,7 +8,7 @@ using System.IO.IsolatedStorage;
 using System.IO;
 
 namespace WhatTodo {
-	class TodoList {
+	public class TodoList {
 		static string TODO_FILE = "Todos.xml";
 		private List<TodoEvent> Todos { get; set; }
 
@@ -32,10 +32,13 @@ namespace WhatTodo {
 			return SaveTodos();
 		}
 
-		public TimeSpan GetTotalDuration() {
-			TimeSpan Duration = new TimeSpan();
+		/**
+		 * Method for getting the total duration of Todos.
+		 */
+		public int GetTotalDuration() {
+			int Duration = 0;
 			foreach (TodoEvent e in Todos) {
-				Duration += e.Required;
+				Duration += (int) e.Required.TotalMinutes;
 			}
 			return Duration;
 		}

@@ -23,7 +23,7 @@ namespace WhatTodo {
 			UI ui = new UI(this);
 			TodoList todoList = new TodoList();
 
-			Manager manager = new Manager(ui,todoList);
+			//Manager manager = new Manager(ui,todoList);
 
 			ui.TodoList = todoList;
 
@@ -32,6 +32,9 @@ namespace WhatTodo {
 			cal.LoadUserEvents();
 
 			Debug.WriteLine("starting");
+
+			// SieniMaagi testing TodoList
+			TestTodoList();
 		}
 
 		
@@ -57,5 +60,18 @@ namespace WhatTodo {
 		/*
 		 * Testing ends
 		 */
+
+		/**
+		 * SieniMaagi testing TodoList
+		 */
+		void TestTodoList() {
+			TodoList List = new TodoList();
+
+			List.AddTodo("Tiskaus", new TimeSpan(0, 60, 0), Priority.LAZY, new DateTime(2013, 3, 12), "", true);
+			List.AddTodo("Sali", new TimeSpan(0, 60, 0), Priority.ASAP, new DateTime(), "", false);
+
+			Debug.WriteLine(List.GetTotalDuration());
+
+		}
 	}
 }

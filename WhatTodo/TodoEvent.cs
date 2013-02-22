@@ -10,7 +10,7 @@ namespace WhatTodo {
 		LAZY,
 		CAL
 	}
-	class TodoEvent {
+	public class TodoEvent {
 		public string Name { get; set; }
 		public Priority Priority { get; set; }
 		public TimeSpan Required { get; set; }
