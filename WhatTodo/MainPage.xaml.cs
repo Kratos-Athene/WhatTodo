@@ -35,6 +35,7 @@ namespace WhatTodo {
 
 			// SieniMaagi testing TodoList
 			TestTodoList();
+			TestTimeList();
 		}
 
 		
@@ -73,5 +74,13 @@ namespace WhatTodo {
 			Debug.WriteLine(List.GetTotalDuration());
 
 		}
+
+		void TestTimeList() {
+			List<Event> ListOfEvents = new List<Event>();
+			ListOfEvents.Add(new Event());
+		}
+		/*
+		 * End of SieniMaagi's testing
+		 */
 	}
 }

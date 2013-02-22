@@ -10,7 +10,7 @@ using System.IO;
 namespace WhatTodo {
 	public class TodoList {
 		static string TODO_FILE = "Todos.xml";
-		private List<TodoEvent> Todos { get; set; }
+		public List<TodoEvent> Todos { get; set; }
 
 		public TodoList() {
 			Todos = LoadTodos();
