@@ -26,5 +26,15 @@ namespace WhatTodo {
 		private void AddButtonClick(object sender, System.EventArgs e) {
 			NavigationService.Navigate(new Uri("/Adding.xaml", UriKind.Relative));
 		}
+
+		private void WhatDidYouDoTap(object sender, System.Windows.Input.GestureEventArgs e)
+		{
+			NavigationService.Navigate(new Uri("/IsDone.xaml", UriKind.Relative));
+		}
+
+		private void NextUpFocus(object sender, System.Windows.RoutedEventArgs e)
+		{
+			NextUpEvent.BorderBrush = (Brush) this.Resources["PhoneAccentColor"];
+		}
 	}
 }
