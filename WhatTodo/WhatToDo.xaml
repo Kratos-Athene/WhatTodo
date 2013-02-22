@@ -115,8 +115,8 @@
     </Grid>
 <phone:PhoneApplicationPage.ApplicationBar>
     <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-        <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-        <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+        <shell:ApplicationBarIconButton x:Name="AddButton" Text="add new" IconUri="/icons/appbar.add.rest.png" Click="AddButtonClick"/>
+        <shell:ApplicationBarIconButton x:Name="DoNextButton" IconUri="/icons/appbar.transport.ff.rest.png" Text="do next"/>
     </shell:ApplicationBar>
 </phone:PhoneApplicationPage.ApplicationBar>
 
