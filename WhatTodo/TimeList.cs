@@ -21,7 +21,7 @@ namespace WhatTodo {
 			Times = ListOfTimes;
 		}
 
-		public int GetTimeInstant(int Minutes) {
+		public int GetTimeIndex(int Minutes) {
 			int MinuteWork = Minutes;
 			foreach (Time t in Times) {
 				MinuteWork = MinuteWork - (int) t.Span.TotalMinutes;

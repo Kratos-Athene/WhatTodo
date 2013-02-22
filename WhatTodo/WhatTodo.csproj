@@ -68,6 +68,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Event.cs" />
+    <Compile Include="Manager.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -76,6 +77,9 @@
     <Compile Include="TodoEvent.cs" />
     <Compile Include="TodoList.cs" />
     <Compile Include="UI.cs" />
+    <Compile Include="IsDone.xaml.cs">
+      <DependentUpon>IsDone.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WhatToDo.xaml.cs">
       <DependentUpon>WhatToDo.xaml</DependentUpon>
     </Compile>
@@ -91,6 +95,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IsDone.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
