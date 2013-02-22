@@ -28,17 +28,34 @@
         </StackPanel>
 		
 		<ListBox Name="IsDoneList" HorizontalAlignment="Left" Height="481" Margin="10,53,0,0" Grid.Row="2" VerticalAlignment="Top" Width="460">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<StackPanel Orientation="Horizontal" Name="IsDoneElement">
-						<CheckBox Name="{Binding ElementName}" Checked="{Binding Remove}" />
-						<StackPanel Orientation="Vertical">
-							<TextBlock Text="{Binding Name}" FontSize="30"/>
-							<TextBlock Text="{Binding TimeString}"/>
-						</StackPanel>
-					</StackPanel>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
+			<StackPanel Orientation="Horizontal">
+				<CheckBox Name="e1" />
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="Do the dishes" FontSize="30"/>
+					<TextBlock Text="14.45, yesterday"/>
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<CheckBox Name="e2" />
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="Marketing article review" FontSize="30"/>
+					<TextBlock Text="19.30, yesterday"/>
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<CheckBox Name="e3" />
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="Do the dishes" FontSize="30"/>
+					<TextBlock Text="8.15, today"/>
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<CheckBox Name="e4" />
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="Marketing article review" FontSize="30"/>
+					<TextBlock Text="30 minutes"/>
+				</StackPanel>
+			</StackPanel>
 		</ListBox>
 		<Button Content="Accept" HorizontalAlignment="Left" Margin="174,539,0,0" Grid.Row="2" VerticalAlignment="Top" Width="138" Click="AcceptDone" Height="68" FontSize="22"/>
 		<CheckBox x:Name="AllCheckBox" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="76" Margin="10,141,0,0" Width="68" Grid.RowSpan="3" Click="AllCheckBoxClicked"/>
