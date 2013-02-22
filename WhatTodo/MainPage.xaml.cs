@@ -77,7 +77,23 @@ namespace WhatTodo {
 
 		void TestTimeList() {
 			List<Event> ListOfEvents = new List<Event>();
-			ListOfEvents.Add(new Event());
+			Event Event1 = new Event();
+			Event Event2 = new Event();
+			Event1.Name = "Tiskaus";
+			Event2.Name = "Sali";
+			Event1.StartTime = new DateTime(2013, 3, 12, 11, 0, 0);
+			Event1.EndTime = new DateTime(2013, 3, 12, 12, 0, 0);
+			Event2.StartTime = new DateTime(2013, 3, 12, 14, 0, 0);
+			Event2.EndTime = new DateTime(2013, 3, 12, 14, 30, 0);
+
+			ListOfEvents.Add(Event1);
+			ListOfEvents.Add(Event2);
+
+			TimeList ListOfTimes = new TimeList(ListOfEvents);
+
+			Debug.WriteLine(ListOfTimes.GetTimeIndex(60));
+			Debug.WriteLine(ListOfTimes.GetTimeIndex(90));
+			Debug.WriteLine(ListOfTimes.GetTimeIndex(75));
 		}
 		/*
 		 * End of SieniMaagi's testing
