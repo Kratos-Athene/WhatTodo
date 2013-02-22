@@ -28,8 +28,8 @@ namespace WhatTodo {
 			// OPERATE
 			// NOW => PANIC
 			TodoEvent now = GetNextASAP();
-			while ((now != null) {
-				panic(now);
+			while (now != null) {
+				Panic(now);
 				now = GetNextASAP();
 			}
 
@@ -44,7 +44,7 @@ namespace WhatTodo {
 				
 
 				// deadlinen index, puolitettu tarvittaessa
-				int end_index = dl.GetTimeIndex(dl.GetTimeToDeadline());
+				int end_index = timelist.GetTimeIndex(dl.GetTimeToDeadline());
 
 				// start_index iteroidaan alaspäin
 				int start_index = end_index-1;
@@ -54,10 +54,10 @@ namespace WhatTodo {
 				while (start_index>0) {
 					TimeList.Time element = timelist.GetElement(start_index);
 					// lisätään jokatapauksessa duration
-					duration += element.Duration();
+					duration += (int)element.Span.TotalMinutes;
 					// jos saadaan lisää tyhjää aikaa
 					if (element.Priority == Priority.FREE) {
-						counter -= element.Duration();
+						counter -= (int)element.Span.TotalMinutes;
 					}
 					// jos tultiin tarpeeksi pitkälle
 					if (counter<0) {
@@ -165,7 +165,7 @@ namespace WhatTodo {
 			// SPLITABLE
 			else {
 				int remaining = dur;
-				while ((remaining = timelist.InsertElement(i, remaining, Priority.ASAP) > 0) {
+				while ((remaining = timelist.InsertElement(i, remaining, Priority.ASAP)) > 0) {
 					i++;
 					while (i < timelist.GetSize()) {
 						if (timelist.GetElement(i).Priority==Priority.FREE) {
@@ -195,10 +195,8 @@ namespace WhatTodo {
 			int dur = (int)te.Required.TotalMinutes;
 			int i = 0;
 
-			// CROPPAA LISTA, SORTTAA PIENIMMÄSTÄ SUURIMPAAN
-
 			int remaining = dur;
-				while ((remaining = timelist.InsertElement(i, remaining, Priority.ASAP) > 0) {
+				while ((remaining = timelist.InsertElement(i, remaining, Priority.ASAP)) > 0) {
 					i++;
 					while (i < list.GetSize()) {
 						if (timelist.GetElement(i).Priority==Priority.FREE) {
