@@ -16,5 +16,10 @@ namespace WhatTodo
         {
             InitializeComponent();
         }
+
+        private void Exit(object sender, System.EventArgs e)
+        {
+        	NavigationService.Navigate(new Uri("/WhatTodo.xaml", UriKind.Relative));
+        }
     }
 }
